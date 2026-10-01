@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finanças</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4eee6;--card:#fbf7f1;--ink:#3a312a;--mut:#8d8073;--line:#e2d8ca;--gold:#a8844a;--hero:#2c241e;--heroink:#f4eee6;--herogold:#d6b676;--pos:#5d7a5a;--neg:#9a4a3a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171310;--card:#1f1a16;--ink:#ece3d6;--mut:#a09282;--line:#322a23;--gold:#d2b27a;--hero:#26201b;--pos:#9bbd96;--neg:#d98f7c}}
+:root[data-theme="dark"]{--bg:#171310;--card:#1f1a16;--ink:#ece3d6;--mut:#a09282;--line:#322a23;--gold:#d2b27a;--hero:#26201b;--pos:#9bbd96;--neg:#d98f7c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Jost,system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:300;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+.w{max-width:1000px;margin:0 auto;padding:30px 22px 80px}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:34px;flex-wrap:wrap;gap:12px}
+.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.mo{display:flex;align-items:center;gap:6px;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+.mo button{background:none;border:0;cursor:pointer;color:var(--gold);font-size:20px;padding:2px 10px}
+.mo span{min-width:150px;text-align:center}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:44px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr;gap:34px}}
+.side{position:sticky;top:20px}
+@media(max-width:820px){.side{position:static}}
+.hero{background:var(--hero);color:var(--heroink);padding:34px 28px;border:1px solid var(--herogold);outline:1px solid var(--herogold);outline-offset:-7px}
+.hero small{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--herogold)}
+.hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:50px;margin:8px 0 18px;line-height:1.05}
+.hero h1.neg{color:#e8a592}
+.hero .io{display:flex;justify-content:space-between;border-top:1px solid rgba(214,182,118,.3);padding-top:14px;font-size:13px}
+.hero .io div span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--herogold);margin-bottom:2px}
+.hero .io b{font-weight:400;font-size:15px}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 4px}
+.sub{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+form{margin-top:34px}
+.seg{display:flex;gap:22px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.seg button{background:none;border:0;border-bottom:1px solid transparent;margin-bottom:-1px;padding:6px 0;cursor:pointer;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.seg button.on{color:var(--ink);border-color:var(--gold)}
+.f{margin-bottom:14px}
+label{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:2px}
+input,select{width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:8px 0;outline:none;border-radius:0;font-size:16px}
+input:focus,select:focus{border-color:var(--gold)}
+select{appearance:none;-webkit-appearance:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.btn{width:100%;margin-top:8px;background:none;border:1px solid var(--gold);color:var(--gold);padding:13px;letter-spacing:.26em;text-transform:uppercase;font-size:12px;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--gold);color:var(--card)}
+section{margin-bottom:46px}
+.tip{display:grid;grid-template-columns:34px 1fr;padding:16px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--mut)}
+.tip:last-child{border-bottom:1px solid var(--line)}
+.tip i{font-family:'Cormorant Garamond',Georgia,serif;font-style:normal;font-size:20px;color:var(--gold)}
+.tip b{display:block;font-weight:500;color:var(--ink);margin-bottom:2px}
+.tip.b b{color:var(--neg)}.tip.g b{color:var(--pos)}
+.stack{display:flex;height:8px;margin-bottom:6px;background:var(--line)}
+.stack i{display:block;height:100%}
+.cr{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.cr span:first-child:before{content:"";display:inline-block;width:9px;height:9px;background:var(--c);margin-right:12px}
+.cr em{font-style:normal;color:var(--mut);margin-left:12px;font-size:13px}
+.tx{display:grid;grid-template-columns:54px 1fr auto 24px;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.tx .dt{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;color:var(--gold)}
+.tx .d div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx small{color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.tx .v{font-variant-numeric:tabular-nums}
+.tx .p{color:var(--pos)}
+.tx .x{background:none;border:0;color:var(--mut);cursor:pointer;opacity:0}
+.tx:hover .x,.tx .x:focus{opacity:1}
+@media(hover:none){.tx .x{opacity:.6}}
+.em{color:var(--mut);padding:26px 0;font-size:14px;font-style:italic;font-family:'Cormorant Garamond',Georgia,serif;font-size:18px}
+.fine{font-size:11px;color:var(--mut);margin-top:12px}
+</style>
+</head>
+<body>
+<div class="w">
+<header><div class="brand">Finanças</div><div class="mo"><button id="pv" aria-label="Mês anterior">‹</button><span id="ml"></span><button id="nx" aria-label="Próximo mês">›</button></div></header>
+<div class="grid">
+ <aside class="side">
+  <div class="hero"><small>Saldo do mês</small><h1 id="bal"></h1>
+   <div class="io"><div><span>Receitas</span><b id="in"></b></div><div style="text-align:right"><span>Despesas</span><b id="out"></b></div></div></div>
+  <form id="f">
+   <div class="seg"><button type="button" class="on" data-t="e">Despesa</button><button type="button" data-t="i">Receita</button></div>
+   <div class="f"><label>Descrição</label><input id="d" required maxlength="60" autocomplete="off"></div>
+   <div class="two"><div class="f"><label>Valor (R$)</label><input id="v" required inputmode="decimal" placeholder="0,00"></div>
+   <div class="f"><label>Data</label><input id="dt" type="date"></div></div>
+   <div class="f"><label>Categoria</label><select id="c"></select></div>
+   <button class="btn">Adicionar</button>
+  </form>
+ </aside>
+ <main>
+  <section><h2>Orientações</h2><div class="sub">O que fazer agora</div><div id="tips"></div>
+   <div class="fine">Orientações automáticas com base nos seus lançamentos; não substituem um consultor financeiro.</div></section>
+  <section><h2>Distribuição</h2><div class="sub">Para onde foi o dinheiro</div><div id="cats"></div></section>
+  <section><h2>Movimentações</h2><div class="sub">Lançamentos do mês</div><div id="ls"></div></section>
+ </main>
+</div>
+</div>
+<script>
+const EXP=['Moradia','Alimentação','Transporte','Saúde','Lazer','Educação','Contas','Outros'];
+const INC=['Salário','Extra','Investimentos','Outros'];
+const COL=['#a8844a','#7b5e43','#c8a982','#5e4b3d','#d8c5a3','#9a8470','#b59a5e','#bfb3a3'];
+const KEY='financas_min_v1';let S=[];
+try{const r=localStorage.getItem(KEY);if(r)S=JSON.parse(r)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=i=>document.getElementById(i);
+const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const num=s=>{const n=parseFloat(String(s).replace(/\./g,'').replace(',','.'));return isNaN(n)?0:n};
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ym=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+let t='e',cur=new Date();cur=new Date(cur.getFullYear(),cur.getMonth(),1);
+const now=new Date();$('dt').value=ym(now)+'-'+String(now.getDate()).padStart(2,'0');
+const cats=()=>{$('c').innerHTML=(t==='e'?EXP:INC).map(c=>`<option>${c}</option>`).join('')};
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{t=b.dataset.t;document.querySelectorAll('.seg button').forEach(x=>x.className='');b.className='on';cats()});
+$('pv').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);draw()};
+$('nx').onclick=()=>{cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);draw()};
+$('f').onsubmit=e=>{e.preventDefault();const v=num($('v').value);if(v<=0)return;
+ const date=$('dt').value||ym(now)+'-01';
+ S.push({id:Date.now()+Math.random(),t,d:$('d').value.trim(),v,c:$('c').value,date});save();
+ $('d').value='';$('v').value='';cur=new Date(+date.slice(0,4),+date.slice(5,7)-1,1);draw()};
+function draw(){
+ $('ml').textContent=cur.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+ const l=S.filter(x=>x.date.startsWith(ym(cur))).sort((a,b)=>b.date.localeCompare(a.date));
+ let i=0,o=0;const by={};
+ l.forEach(x=>{if(x.t==='i')i+=x.v;else{o+=x.v;by[x.c]=(by[x.c]||0)+x.v}});
+ $('in').textContent=brl(i);$('out').textContent=brl(o);
+ $('bal').textContent=brl(i-o);$('bal').className=i-o<0?'neg':'';
+ const ks=Object.keys(by).sort((a,b)=>by[b]-by[a]);
+ $('cats').innerHTML=ks.length?`<div class="stack">${ks.map(k=>`<i style="width:${by[k]/o*100}%;background:${COL[EXP.indexOf(k)]}"></i>`).join('')}</div>`+ks.map(k=>`<div class="cr"><span style="--c:${COL[EXP.indexOf(k)]}">${k}</span><span>${brl(by[k])}<em>${Math.round(by[k]/o*100)}%</em></span></div>`).join(''):'<div class="em">Sem despesas neste mês.</div>';
+ $('ls').innerHTML=l.length?l.map(x=>`<div class="tx"><div class="dt">${x.date.slice(8)}/${x.date.slice(5,7)}</div><div class="d"><div>${esc(x.d)}</div><small>${x.c}</small></div><div class="v ${x.t==='i'?'p':''}">${x.t==='i'?'+':'−'} ${brl(x.v)}</div><button class="x" data-id="${x.id}" aria-label="Excluir">✕</button></div>`).join(''):'<div class="em">Nenhum lançamento ainda.</div>';
+ tips(i,o,by);
+ document.querySelectorAll('.x').forEach(b=>b.onclick=()=>{S=S.filter(x=>String(x.id)!==b.dataset.id);save();draw()});
+}
+function tips(i,o,by){
+ const el=$('tips'),T=[],add=(c,t,m)=>T.push([c,t,m]);
+ const out=()=>{el.innerHTML=T.map((x,n)=>`<div class="tip ${x[0]}"><i>${n+1}</i><div><b>${x[1]}</b>${x[2]}</div></div>`).join('')};
+ if(!i&&!o){add('','Comece por aqui','Lance sua renda e seus gastos do mês. Com isso, eu indico onde ajustar.');return out()}
+ if(!i){add('w','Falta a receita','Lance quanto entrou neste mês para calcular quanto você está poupando.');return out()}
+ const bal=i-o,r=bal/i,NEED=['Moradia','Alimentação','Transporte','Saúde','Contas','Educação'];
+ const need=NEED.reduce((a,k)=>a+(by[k]||0),0),want=o-need;
+ const flex=['Lazer','Outros','Alimentação'].sort((a,b)=>(by[b]||0)-(by[a]||0))[0];
+ if(bal<0)add('b','Você gastou mais do que ganhou',`Faltaram ${brl(-bal)} neste mês. Comece cortando o que é flexível: ${flex} é a maior fatia (${brl(by[flex]||0)}). Evite parcelar ou usar crédito para cobrir a diferença.`);
+ else if(r<.1)add('w','Poupança baixa ('+Math.round(r*100)+'%)',`Sobraram ${brl(bal)}. O mínimo saudável é 10% e o ideal 20%: guarde ${brl(i*.2)} e reduza cerca de ${brl(i*.2-bal)} nos gastos. Transfira a poupança no dia em que o dinheiro entra.`);
+ else if(r<.2)add('w','No caminho ('+Math.round(r*100)+'% poupado)',`Faltam ${brl(i*.2-bal)} para os 20% ideais. Um pequeno corte em ${flex} já resolve.`);
+ else add('g','Ótima poupança ('+Math.round(r*100)+'%)',`Você guardou ${brl(bal)}. Separe o valor no mesmo dia: reserva de emergência primeiro, depois investimentos.`);
+ if(need/i>.5)add('w','Gastos essenciais elevados',`Moradia, alimentação, transporte, saúde, contas e educação somam ${Math.round(need/i*100)}% da renda (referência: até 50%). Vale renegociar contratos, planos e assinaturas.`);
+ if(want>0&&want/i>.3)add('w','Gastos livres acima de 30%',`Lazer e outros somam ${Math.round(want/i*100)}% da renda. Defina um teto mensal e acompanhe semanalmente.`);
+ const ks=Object.keys(by).sort((a,b)=>by[b]-by[a]);
+ if(o>0&&ks.length){const k=ks[0];if(by[k]/o>.4&&k!=='Moradia')add('','Atenção a '+k,`Concentra ${Math.round(by[k]/o*100)}% das despesas. Revisar essa categoria dá o maior retorno.`)}
+ const pd=new Date(cur.getFullYear(),cur.getMonth()-1,1),pby={};
+ S.filter(x=>x.t==='e'&&x.date.startsWith(ym(pd))).forEach(x=>pby[x.c]=(pby[x.c]||0)+x.v);
+ let up=null;ks.forEach(k=>{const d=by[k]-(pby[k]||0);if(pby[k]>0&&by[k]>pby[k]*1.25&&d>50&&(!up||d>up.d))up={k,d}});
+ if(up)add('w',up.k+' subiu em relação ao mês anterior',`Foram ${brl(up.d)} a mais. Verifique se foi pontual ou virou hábito.`);
+ if(ym(now)===ym(cur)&&now.getDate()>=5&&o>0){const dim=new Date(cur.getFullYear(),cur.getMonth()+1,0).getDate(),pj=o/now.getDate()*dim;
+  if(pj>i)add('b','Projeção do mês no vermelho',`No ritmo atual, você fecha o mês gastando cerca de ${brl(pj)}, acima da receita. Segure os gastos variáveis nos próximos dias.`)}
+ if(bal>0&&o>0){const m=o*6;add('','Reserva de emergência',`O ideal são 6 meses de gastos guardados (cerca de ${brl(m)}). Guardando ${brl(bal)} por mês, você chega lá em ${Math.ceil(m/bal)} meses.`)}
+ out();
+}
+cats();draw();
+</script>
+</body>
+</html>
